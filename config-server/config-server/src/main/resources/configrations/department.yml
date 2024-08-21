@@ -1,0 +1,27 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+server:
+  port: 8070
+spring:
+  application:
+    name: department
+  data:
+    mongodb:
+      authentication-database: admin
+      database: departmentdb
+      host: localhost
+      port: 27017
+      username: rootuser
+      password: rootpass
+application:
+  config:
+    employee-url : http://localhost:8222/api/v1/employee
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
