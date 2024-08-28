@@ -20,18 +20,18 @@ public class EmployeeServiceV2 {
         this.employeeRepository = employeeRepository;
     }
 
-    public void addEmployee(EmployeeV2DTO employeedto) {
+    public void addEmployee(EmployeeV2DTO employeeDTO) {
         Employee employee = new Employee();
-        employee.setName(employeedto.getName());
-        employee.setAge(employeedto.getAge());
-        employee.setPhoneNumber(employeedto.getPhoneNumber());
-        employee.setGender(employeedto.getGender());
-        employee.setBaseSalary(employeedto.getBaseSalary());
-        employee.setRole(employeedto.getRole());
-        employee.setHireDate(employeedto.getHireDate());
-        employee.setAddress(employeedto.getAddress());
-        employee.setDepartmentId(employeedto.getDepartmentId());
-        employee.setEmail(employeedto.getEmail());
+        employee.setName(employeeDTO.getName());
+        employee.setAge(employeeDTO.getAge());
+        employee.setPhoneNumber(employeeDTO.getPhoneNumber());
+        employee.setGender(employeeDTO.getGender());
+        employee.setBaseSalary(employeeDTO.getBaseSalary());
+        employee.setRole(employeeDTO.getRole());
+        employee.setHireDate(employeeDTO.getHireDate());
+        employee.setAddress(employeeDTO.getAddress());
+        employee.setDepartmentId(employeeDTO.getDepartmentId());
+        employee.setEmail(employeeDTO.getEmail());
         employeeRepository.save(employee);
     }
 
@@ -102,26 +102,22 @@ public class EmployeeServiceV2 {
     }
 
     public List<Employee> getEmployeeSortedByName() {
-        List<Employee> employees = employeeRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
-        return employees;
+        return  employeeRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
-    public List<Employee> getEmployessBasedOnGender(String gender) {
-        List<Employee> employees = employeeRepository.findEmployeeByGender(gender);
-        return employees;
+    public List<Employee> getEmployeesBasedOnGender(String gender) {
+        return  employeeRepository.findEmployeeByGender(gender);
+
 
     }
     public List<Employee> getEmployeesByAgeRange(int minAge, int maxAge) {
-        List<Employee> employees = employeeRepository.findEmployeeByAgeRange(minAge, maxAge);
-        return employees;
+        return employeeRepository.findEmployeeByAgeRange(minAge, maxAge);
     }
-    public List<Employee> getEmployessInDepartment(Long departmentId) {
-        List<Employee> employees = employeeRepository.findEmployeeByDepartmentId(departmentId);
-        return employees;
+    public List<Employee> getEmployeesInDepartment(Long departmentId) {
+        return employeeRepository.findEmployeeByDepartmentId(departmentId);
     }
     public List<Employee> getManagers(List<Long> managerIds) {
-        List<Employee> employees = employeeRepository.findManagers(managerIds);
-        return employees;
+        return  employeeRepository.findManagers(managerIds);
     }
 
 }

@@ -60,12 +60,12 @@ public class EmployeeControllerV1 {
     //get employees by gender
     @GetMapping("/gender")
     public List<Employee> getEmployeesByGender(@RequestParam String gender) {
-        return employeeService.getEmployessBasedOnGender(gender);
+        return employeeService.getEmployeesBasedOnGender(gender);
     }
 
     @GetMapping("/department/{departmentId}")
     public ResponseEntity<List<Employee>> getEmployeesInDepartment(@PathVariable Long departmentId) {
-        return ResponseEntity.ok(employeeService.getEmployessInDepartment(departmentId));
+        return ResponseEntity.ok(employeeService.getEmployeesInDepartment(departmentId));
     }
 
     //Get Employees by Age Range:

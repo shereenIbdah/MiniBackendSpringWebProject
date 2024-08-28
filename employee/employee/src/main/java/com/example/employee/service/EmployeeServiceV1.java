@@ -109,20 +109,18 @@ public class EmployeeServiceV1 {
         return employeeRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
-    public List<Employee> getEmployessBasedOnGender(String gender) {
+    public List<Employee> getEmployeesBasedOnGender(String gender) {
         return employeeRepository.findEmployeeByGender(gender);
 
     }
     public List<Employee> getEmployeesByAgeRange(int minAge, int maxAge) {
         return employeeRepository.findEmployeeByAgeRange(minAge, maxAge);
     }
-    public List<Employee> getEmployessInDepartment(Long departmentId) {
-        List<Employee> employees = employeeRepository.findEmployeeByDepartmentId(departmentId);
-        return employees;
+    public List<Employee> getEmployeesInDepartment(Long departmentId) {
+        return  employeeRepository.findEmployeeByDepartmentId(departmentId);
     }
     public List<Employee> getManagers(List<Long> managerIds) {
-        List<Employee> employees = employeeRepository.findManagers(managerIds);
-        return employees;
+        return employeeRepository.findManagers(managerIds);
     }
 
 }
