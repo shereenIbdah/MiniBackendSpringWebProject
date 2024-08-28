@@ -1,6 +1,7 @@
 package com.example.employee.controller;
+import com.example.employee.dto.EmployeeV2DTO;
 import com.example.employee.model.Employee;
-import com.example.employee.service.EmployeeService;
+import com.example.employee.service.EmployeeServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,22 +9,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/employee")
-public class EmployeeController {
-    private final EmployeeService employeeService;
+@RequestMapping(path = "/api/v2/employee")
+public class EmployeeControllerV2 {
+    private final EmployeeServiceV2 employeeService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeControllerV2(EmployeeServiceV2 employeeService) {
         this.employeeService = employeeService;
     }
 
     @PostMapping(path = "/addEmployee")
-    public void addEmployee(@RequestBody Employee employee) {
+    public void addEmployee(@RequestBody EmployeeV2DTO employee) {
         employeeService.addEmployee(employee);
     }
 
     @GetMapping("/allEmployee")
-    public List<Employee> getEmployees() {
+    public List<EmployeeV2DTO> getEmployees() {
         return employeeService.getEmployees();
     }
 

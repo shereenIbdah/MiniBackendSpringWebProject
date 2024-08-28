@@ -22,6 +22,10 @@ spring:
           uri: http://localhost:8090
           predicates:
             - Path=/api/v1/address/**
+        - id: employee
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/v2/employee/**
         - id: department
           uri: http://localhost:8070
           predicates:

@@ -1,5 +1,6 @@
 package com.example.employee.service;
 
+import com.example.employee.dto.EmployeeV2DTO;
 import com.example.employee.model.Employee;
 import com.example.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,21 +12,45 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EmployeeService {
+public class EmployeeServiceV2 {
     private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeServiceV2(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
-    public void addEmployee(Employee employee) {
+    public void addEmployee(EmployeeV2DTO employeedto) {
+        Employee employee = new Employee();
+        employee.setName(employeedto.getName());
+        employee.setAge(employeedto.getAge());
+        employee.setPhoneNumber(employeedto.getPhoneNumber());
+        employee.setGender(employeedto.getGender());
+        employee.setBaseSalary(employeedto.getBaseSalary());
+        employee.setRole(employeedto.getRole());
+        employee.setHireDate(employeedto.getHireDate());
+        employee.setAddress(employeedto.getAddress());
+        employee.setDepartmentId(employeedto.getDepartmentId());
+        employee.setEmail(employeedto.getEmail());
         employeeRepository.save(employee);
-
     }
 
-    public List<Employee> getEmployees() {
-        return employeeRepository.findAll();
+    public List<EmployeeV2DTO> getEmployees() {
+        return employeeRepository.findAll().stream()
+                .map(employee -> new EmployeeV2DTO(
+                        employee.getId(),
+                        employee.getName(),
+                        employee.getAge(),
+                        employee.getPhoneNumber(),
+                        employee.getGender(),
+                        employee.getBaseSalary(),
+                        employee.getHireDate(),
+                        employee.getRole(),
+                        employee.getAddress(),
+                        employee.getEmail(),
+                        employee.getDepartmentId()
+                ))
+                .collect(java.util.stream.Collectors.toList());
     }
 
 
