@@ -16,7 +16,6 @@ public class EmployeeV1DTO {
     private Double currentSalary;
     private LocalDate hireDate;
     private String role;
-    //employee has one address (join in the many side)
     private Address address;
     private Long departmentId;
     private static final double ANNUAL_INCREMENT = 200;
@@ -50,7 +49,6 @@ public class EmployeeV1DTO {
     }
 
     public double getCurrentSalary() {
-        //the hire date(every year before current year equals 200$ + the base salar
         int years = LocalDate.now().getYear() - hireDate.getYear();
         if (years > 0) {
             currentSalary = baseSalary + years * ANNUAL_INCREMENT;

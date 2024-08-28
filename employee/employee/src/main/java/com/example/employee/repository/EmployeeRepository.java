@@ -17,7 +17,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     List<Employee> findEmployeeByDepartmentId(Long departmentId);
 
-    //findManagers
     @Query("SELECT e FROM Employee e WHERE e.id IN :ids")
     List<Employee> findManagers(@Param("ids") List<Long> ids);
 
