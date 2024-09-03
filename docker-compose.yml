@@ -1,46 +1,97 @@
+
+version: "3.7"
 services:
-  postgresql:
-    container_name: postgresql
-    image: postgres
+  employee-service:
+    build:
+      context: ./employee/employee # Adjust this path to where your Dockerfile is
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8090:8090"
+    networks:
+      - task2_springapimysql-net
     environment:
-      POSTGRES_USER: alibou
-      POSTGRES_PASSWORD: alibou
-      PGDATA: /data/postgres
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/task2db?allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=shereen12003773
+      - SPRING_APPLICATION_NAME=employee
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/
+    depends_on:
+      - mysqldb
+      - config-server
+      - discovery
+      - gateway
     volumes:
-      - postgres:/data/postgres
+      - .m2:/root/.m2
+
+  mysqldb:
+    image: "mysql:8.0"
+    restart: always
     ports:
-      - "5432:5432"
+      - "3307:3306"
     networks:
-      - postgres
-    restart: unless-stopped
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
+      - task2_springapimysql-net
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
+      MYSQL_DATABASE: task2db
+      MYSQL_ROOT_PASSWORD: shereen12003773
+
+  config-server:
+    build:
+      context: ./config-server/config-server  # Adjust this path to where your Dockerfile is
+      dockerfile: Dockerfile
     ports:
-      - "5050:80"
+      - "8888:8888"
     networks:
-      - postgres
-    restart: unless-stopped
-  zipkin:
-    container_name: zipkin
-    image: openzipkin/zipkin
+      - task2_springapimysql-net
+
+  discovery:
+    build:
+      context: ./discovery/discovery  # Adjust this path to where your Dockerfile is
+      dockerfile: Dockerfile
     ports:
-      - "9411:9411"
+      - "8761:8761"
     networks:
-      - zipkin
+      - task2_springapimysql-net
+    depends_on:
+      - config-server
+    environment:
+      - SPRING_APPLICATION_NAME=discovery
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+
+  gateway:
+    build:
+      context: ./gateway  # Adjust this path to where your Dockerfile is
+      dockerfile: Dockerfile
+    ports:
+      - "8222:8222"
+    networks:
+      - task2_springapimysql-net
+    depends_on:
+      - discovery
+      - config-server
+    environment:
+      - SPRING_APPLICATION_NAME=gateway
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+
+  department-service:
+    build:
+      context: ./department # Adjust this path to where your Dockerfile is
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8070:8070"
+    networks:
+      - task2_springapimysql-net
+    environment:
+      - SPRING_APPLICATION_NAME=department
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/
+    depends_on:
+      - config-server
+      - discovery
+      - gateway
 
 networks:
-  postgres:
+  task2_springapimysql-net:
     driver: bridge
-  zipkin:
-    driver: bridge
-
-volumes:
-  postgres:
-  pgadmin:
