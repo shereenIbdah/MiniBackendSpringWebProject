@@ -2,16 +2,15 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="department" />
-        <module name="student" />
-        <module name="gateway" />
+        <module name="employee" />
         <module name="discovery" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,8 +19,8 @@
       <module name="config-server" options="-parameters" />
       <module name="department" options="-parameters" />
       <module name="discovery" options="-parameters" />
+      <module name="employee" options="-parameters" />
       <module name="gateway" options="-parameters" />
-      <module name="student" options="-parameters" />
     </option>
   </component>
 </project>
