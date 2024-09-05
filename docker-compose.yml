@@ -91,7 +91,14 @@ services:
       - config-server
       - discovery
       - gateway
+  zipkin:
+    image: openzipkin/zipkin:latest  # Uses the latest version of the Zipkin Docker image
+    container_name: zipkin
+    ports:
+      - "9411:9411"  # Exposes the Zipkin UI and API on port 9411
 
 networks:
   task2_springapimysql-net:
     driver: bridge
+
+

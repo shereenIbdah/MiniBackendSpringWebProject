@@ -48,6 +48,9 @@ public class EmployeeV1DTO {
         this.departmentId = departmentId;
     }
 
+    public EmployeeV1DTO() {
+    }
+
     public double getCurrentSalary() {
         int years = LocalDate.now().getYear() - hireDate.getYear();
         if (years > 0) {

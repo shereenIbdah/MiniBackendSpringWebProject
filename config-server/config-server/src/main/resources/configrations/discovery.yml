@@ -8,4 +8,4 @@ eureka:
     fetch-registry: false
     service-url:
 #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-      defaultZone: http://${eureka.instance.hostname:localhost}:8762/eureka/
+      defaultZone: http://${eureka.instance.hostname:discovery}:8761/eureka/
