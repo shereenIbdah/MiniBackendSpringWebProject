@@ -15,16 +15,16 @@ spring:
           enabled: true
       routes:
         - id: employee
-          uri: http://localhost:8090
+          uri: ${Employee_SERVICEURL:http://localhost:8090}
           predicates:
             - Path=/api/v1/employee/**
-            - Path=/api/v2/employee/**
+#            - Path=/api/v2/employee/**
         - id: address
-          uri: http://localhost:8090
+          uri: ${Employee_SERVICEURL:http://localhost:8090}
           predicates:
             - Path=/api/v1/address/**
         - id: department
-          uri: http://localhost:8070
+          uri: ${Department_SERVICEURL:http://localhost:8070}
           predicates:
             - Path=/api/v1/department/**
 management:

@@ -73,6 +73,8 @@ services:
     environment:
       - SPRING_APPLICATION_NAME=gateway
       - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - Employee_SERVICEURL=http://employee-service:8090
+      - Department_SERVICEURL=http://department-service:8070
 
   department-service:
     build:

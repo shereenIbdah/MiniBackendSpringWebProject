@@ -3,7 +3,8 @@ eureka:
     hostname: localhost
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://discovery:8761/eureka}
+       defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
+
 server:
   port: 8090
 spring:
@@ -12,7 +13,7 @@ spring:
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/task2db}
     username: root
-    password: shereen12003773
+    password: 1200373
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
