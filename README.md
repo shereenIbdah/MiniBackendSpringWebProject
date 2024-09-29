@@ -44,5 +44,5 @@ This project demonstrates the use of **microservices architecture** for managing
 ### Running with Docker
  1. Clone the repository:
    ```bash
-   git clone https://github.com/shereenIbdah/TrainingProject.git
+   git clone https://github.com/shereenIbdah/MiniBackendSpringWebProject.git
    cd TrainingProject
