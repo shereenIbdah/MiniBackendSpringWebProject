@@ -16,7 +16,7 @@ spring:
       host: localhost
       port: 27017
       username: rootuser
-      password: rootpass
+      password: *****
 application:
   config:
     employee-url : http:/localhost:8222/api/v1/employee
