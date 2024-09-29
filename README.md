@@ -38,7 +38,7 @@ This project demonstrates the use of **microservices architecture** for managing
 ### Prerequisites
 
 - **Docker** and **Docker Compose** installed
-- **Java 17** =
+- **Java 17** 
 - **Maven** for building Spring Boot projects
 
 ### Running with Docker
