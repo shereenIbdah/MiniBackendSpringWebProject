@@ -9,7 +9,7 @@ services:
       - data:/data
     environment:
       - MONGO_INITDB_ROOT_USERNAME=rootuser
-      - MONGO_INITDB_ROOT_PASSWORD=rootpass
+      - MONGO_INITDB_ROOT_PASSWORD=*****
 
   mongo-express:
     image: mongo-express
@@ -19,10 +19,10 @@ services:
       - 8081:8081
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=******
       - ME_CONFIG_MONGODB_SERVER=mongodb
       - ME_CONFIG_BASICAUTH_USERNAME=adminuser
-      - ME_CONFIG_BASICAUTH_PASSWORD=adminpass
+      - ME_CONFIG_BASICAUTH_PASSWORD=******
 
 volumes:
   data: {}
