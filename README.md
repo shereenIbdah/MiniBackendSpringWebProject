@@ -46,3 +46,5 @@ This project demonstrates the use of **microservices architecture** for managing
    ```bash
    git clone https://github.com/shereenIbdah/MiniBackendSpringWebProject.git
    cd TrainingProject
+2. docker-compose up --build
+
